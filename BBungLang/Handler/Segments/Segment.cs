@@ -1,6 +1,5 @@
-﻿namespace Handler.Segments
+﻿namespace Handler.Segments;
+
+public abstract class Segment : CompiledNode
 {
-    public abstract class Segment : CompiledNode
-    {
-    }
 }

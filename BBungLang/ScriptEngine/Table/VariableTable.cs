@@ -1,37 +1,34 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using ScriptEngine.Elements;
+﻿using ScriptEngine.Elements;
 
-namespace ScriptEngine.Table
+namespace ScriptEngine.Table;
+
+public class VariableTable
 {
-    public class VariableTable
+    public static Dictionary<string, Node> Variables = new();
+
+    public static Node GetVariable(string varName)
     {
-        public static Dictionary<string, Node> Variables = new Dictionary<string, Node>();
+        return VariableExists(varName) ? Variables[varName] : null;
+    }
 
-        public static Node GetVariable(string varName)
-        {
-            return VariableExists(varName) ? Variables[varName] : null;
-        }
+    public static bool VariableExists(string varName)
+    {
+        return Variables.ContainsKey(varName);
+    }
 
-        public static bool VariableExists(string varName)
-        {
-            return Variables.ContainsKey(varName);
-        }
+    public static void PutVariable(string varName, Node variable)
+    {
+        Variables[varName] = variable;
+    }
 
-        public static void PutVariable(string varName, Node variable)
-        {
-            Variables[varName] = variable;
-        }
+    public static bool StateExists(string stateName)
+    {
+        return Variables.Where(x => x.Key.Contains(stateName)).LongCount() > 0;
+    }
 
-        public static bool StateExists(string stateName)
-        {
-            return Variables.Where(x => x.Key.Contains(stateName)).LongCount() > 0;
-        }
-
-        public static void PutStateVariable(string stateName, KeyValuePair<string, Node> variable)
-        {
-            var varName = $"{stateName}.{variable.Key}";
-            Variables[varName] = variable.Value;
-        }
+    public static void PutStateVariable(string stateName, KeyValuePair<string, Node> variable)
+    {
+        var varName = $"{stateName}.{variable.Key}";
+        Variables[varName] = variable.Value;
     }
 }

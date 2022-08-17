@@ -1,19 +1,18 @@
-﻿namespace ScriptEngine.Elements
+﻿namespace ScriptEngine.Elements;
+
+public abstract class Node
 {
-    public abstract class Node
+    public NodeType NodeType;
+    public string Value;
+
+    public Node(NodeType nodeType, string value)
     {
-        public NodeType NodeType;
-        public string Value;
+        NodeType = nodeType;
+        Value = value;
+    }
 
-        public Node(NodeType nodeType, string value)
-        {
-            NodeType = nodeType;
-            Value = value;
-        }
-
-        public override string ToString()
-        {
-            return $"({NodeType.ToString()}, {Value})";
-        }
+    public override string ToString()
+    {
+        return $"({NodeType.ToString()}, {Value})";
     }
 }

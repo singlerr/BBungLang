@@ -1,6 +1,5 @@
-﻿namespace Handler.Wrappers
+﻿namespace Handler.Wrappers;
+
+public abstract class Wrapper
 {
-    public abstract class Wrapper
-    {
-    }
 }

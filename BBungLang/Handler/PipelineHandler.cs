@@ -1,38 +1,33 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using Handler.Pipelines;
+﻿using Handler.Pipelines;
 
-namespace Handler
+namespace Handler;
+
+public class PipelineHandler
 {
-    public class PipelineHandler
+    private readonly Dictionary<string, Pipeline> _registeredPipelines;
+
+    public PipelineHandler()
     {
-        private readonly Dictionary<string, Pipeline> _registeredPipelines;
+        _registeredPipelines = new Dictionary<string, Pipeline>();
+    }
 
-        public PipelineHandler()
-        {
-            _registeredPipelines = new Dictionary<string, Pipeline>();
-        }
+    public bool PipelineExists(string name)
+    {
+        return _registeredPipelines.ContainsKey(name);
+    }
 
-        public bool PipelineExists(string name)
-        {
-            return _registeredPipelines.ContainsKey(name);
-        }
+    public Pipeline GetPipeline(string name)
+    {
+        return PipelineExists(name) ? _registeredPipelines[name] : null;
+    }
 
-        public Pipeline GetPipeline(string name)
-        {
-            return PipelineExists(name) ? _registeredPipelines[name] : null;
-        }
+    public void PutPipeline(string name, Pipeline pipeline)
+    {
+        _registeredPipelines[name] = pipeline;
+    }
 
-        public void PutPipeline(string name, Pipeline pipeline)
-        {
-            
-            _registeredPipelines[name] = pipeline;
-        }
-
-        public Dictionary<string,Pipeline>.ValueCollection GetRegisteredPipelines()
-        {
-            return _registeredPipelines.Values;
-        }
-
+    public Dictionary<string, Pipeline>.ValueCollection GetRegisteredPipelines()
+    {
+        return _registeredPipelines.Values;
     }
 }

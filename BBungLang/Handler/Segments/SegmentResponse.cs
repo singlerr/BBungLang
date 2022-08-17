@@ -1,20 +1,19 @@
-﻿namespace Handler.Segments
+﻿namespace Handler.Segments;
+
+public class SegmentResponse
 {
-    public class SegmentResponse
-    {
-        public readonly Segment NextSegment;
-        public readonly SegmentResponseType SegmentResponseType;
+    public readonly Segment NextSegment;
+    public readonly SegmentResponseType SegmentResponseType;
 
-        public SegmentResponse(Segment nextSegment, SegmentResponseType responseType)
-        {
-            NextSegment = nextSegment;
-            SegmentResponseType = responseType;
-        }
-    }
-
-    public enum SegmentResponseType
+    public SegmentResponse(Segment nextSegment, SegmentResponseType responseType)
     {
-        Continue,
-        Suspend
+        NextSegment = nextSegment;
+        SegmentResponseType = responseType;
     }
+}
+
+public enum SegmentResponseType
+{
+    Continue,
+    Suspend
 }
